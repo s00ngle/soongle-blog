@@ -34,9 +34,11 @@ export default function Home() {
       </header>
 
       <main className="flex-grow my-16 flex flex-col justify-center items-center">
-        <h2 className="text-5xl font-semibold">Welcome to Soongle's Blog</h2>
+        <h2 className="text-5xl font-semibold">
+          Welcome to Soongle&apos;s Blog
+        </h2>
         <p className="mt-4 text-gray-700">
-          I'm passionate about frontend development and playing the guitar!
+          I&apos;m passionate about frontend development and playing the guitar!
         </p>
       </main>
 
