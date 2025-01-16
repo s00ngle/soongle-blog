@@ -2,6 +2,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Metadata } from "next";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: {
@@ -9,6 +10,9 @@ export const metadata: Metadata = {
     default: "Soongle",
   },
   description: "Soongle's blog",
+  icons: {
+    icon: "/favicon.png",
+  },
   openGraph: {
     title: "Soongle Blog",
     description:
@@ -16,7 +20,7 @@ export const metadata: Metadata = {
     url: "https://soongle.vercel.app/",
     images: [
       {
-        url: "https://soongle.vercel.app/hamster.png",
+        url: "https://soongle.vercel.app/og-image.png",
         width: 1200,
         height: 630,
         alt: "Soongle Blog",
@@ -34,6 +38,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+      </Head>
       <body className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow flex flex-col">{children}</main>
