@@ -7,14 +7,13 @@ export const metadata: Metadata = {
 
 const AboutPage = () => {
   return (
-    <div className="flex-grow flex flex-col items-center p-8 bg-gray-50">
+    <div className="flex-grow flex flex-col items-center px-4 bg-gray-50">
       <h1 className="text-5xl font-bold text-gray-900 tracking-tight">
         About Me
       </h1>
       <p className="mt-4 text-center text-gray-700 max-w-2xl">
-        Hello! I&apos;m Soongle, a frontend developer passionate about
-        technology. This blog is a space where I share my learning and
-        experiences.
+        Hello! I'm Soongle, a frontend developer passionate about technology.
+        This blog is a space where I share my learning and experiences.
       </p>
 
       {/* Social Media Buttons */}
@@ -46,7 +45,7 @@ const AboutPage = () => {
       </div>
 
       {/* Activity Table */}
-      <section className="mt-8 w-full max-w-4xl px-6">
+      <section className="mt-8 w-full max-w-4xl px-3">
         <h2 className="text-3xl font-semibold text-center text-gray-800">
           Activities
         </h2>
@@ -118,7 +117,7 @@ const AboutPage = () => {
       </section>
 
       {/* Award Table */}
-      <section className="mt-8 w-full max-w-4xl px-6">
+      <section className="mt-8 w-full max-w-4xl px-3">
         <h2 className="text-3xl font-semibold text-center text-gray-800">
           Awards
         </h2>
