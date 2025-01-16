@@ -12,8 +12,9 @@ const AboutPage = () => {
         About Me
       </h1>
       <p className="mt-4 text-center text-gray-700 max-w-2xl">
-        Hello! I'm Soongle, a frontend developer passionate about technology.
-        This blog is a space where I share my learning and experiences.
+        Hello! I&apos;m Soongle, a frontend developer passionate about
+        technology. This blog is a space where I share my learning and
+        experiences.
       </p>
 
       {/* Social Media Buttons */}
