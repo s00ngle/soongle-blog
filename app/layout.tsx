@@ -9,6 +9,22 @@ export const metadata: Metadata = {
     default: "Soongle",
   },
   description: "Soongle's blog",
+  openGraph: {
+    title: "Soongle Blog",
+    description:
+      "Welcome to Soongle Blog, a place where I share insights on coding and technology.",
+    url: "https://soongle.vercel.app/",
+    images: [
+      {
+        url: "/hammer.png",
+        width: 1200,
+        height: 630,
+        alt: "Soongle Blog",
+      },
+    ],
+    siteName: "Soongle",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
