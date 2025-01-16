@@ -37,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scrollbar-hide">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" href="/favicon.png" />
@@ -45,7 +45,7 @@ export default function RootLayout({
       </Head>
       <body className="flex flex-col min-h-screen">
         <Header />
-        <main className="flex-grow flex flex-col">{children}</main>
+        <main className="flex-grow flex flex-col mt-20">{children}</main>
         <Footer />
       </body>
     </html>
