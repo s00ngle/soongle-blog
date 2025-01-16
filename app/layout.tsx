@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     url: "https://soongle.vercel.app/",
     images: [
       {
-        url: "https://soongle.vercel.app/og-image.png",
+        url: "https://soongle.vercel.app/og-banana-image.png",
         width: 1200,
         height: 630,
         alt: "Soongle Blog",
