@@ -24,7 +24,7 @@ const AboutPage = () => {
           rel="noopener noreferrer"
           className="p-4 bg-red-600 text-white rounded-full shadow-xl transform hover:scale-110 transition-transform"
         >
-          <FaYoutube className="text-2xl" />
+          <FaYoutube className="text-3xl" />
         </a>
         <a
           href="https://www.instagram.com/kyso_on/"
@@ -32,7 +32,7 @@ const AboutPage = () => {
           rel="noopener noreferrer"
           className="p-4 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white rounded-full shadow-xl transform hover:scale-110 transition-transform"
         >
-          <FaInstagram className="text-2xl" />
+          <FaInstagram className="text-3xl" />
         </a>
         <a
           href="https://github.com/s00ngle"
@@ -40,7 +40,7 @@ const AboutPage = () => {
           rel="noopener noreferrer"
           className="p-4 bg-gray-800 text-white rounded-full shadow-xl transform hover:scale-110 transition-transform"
         >
-          <FaGithub className="text-2xl" />
+          <FaGithub className="text-3xl" />
         </a>
       </div>
 
