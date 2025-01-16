@@ -66,8 +66,13 @@ const AboutPage = () => {
           <tbody>
             <tr className="border-t border-gray-200 hover:bg-gray-50">
               <td className="px-4 py-4 font-medium">SSAFY</td>
+              <td className="px-4 py-4">공통 프로젝트 팀장</td>
+              <td className="px-4 py-4">2025.01 - 2025.02</td>
+            </tr>
+            <tr className="border-t border-gray-200 hover:bg-gray-50">
+              <td className="px-4 py-4 font-medium">SSAFY</td>
               <td className="px-4 py-4">12기 Coding Track</td>
-              <td className="px-4 py-4">2024.07 - 2025.06</td>
+              <td className="px-4 py-4">2024.07 - 2024.11</td>
             </tr>
             <tr className="border-t border-gray-200 hover:bg-gray-50">
               <td className="px-4 py-4 font-medium">GDSC HUFS</td>
@@ -136,6 +141,25 @@ const AboutPage = () => {
             </tr>
           </thead>
           <tbody>
+            <tr className="border-t border-gray-200 hover:bg-gray-50">
+              <td className="px-4 py-4 font-medium">
+                SSAFY 1학기 코딩 집중 과정
+              </td>
+              <td className="px-4 py-4">성적우수상(2등)</td>
+              <td className="px-4 py-4">2024.11.29</td>
+            </tr>
+            <tr className="border-t border-gray-200 hover:bg-gray-50">
+              <td className="px-4 py-4 font-medium">
+                SSAFY 1학기 관통 프로젝트
+              </td>
+              <td className="px-4 py-4">우수상(2등)</td>
+              <td className="px-4 py-4">2024.11.29</td>
+            </tr>
+            <tr className="border-t border-gray-200 hover:bg-gray-50">
+              <td className="px-4 py-4 font-medium">삼성 SW 역량테스트</td>
+              <td className="px-4 py-4">B형</td>
+              <td className="px-4 py-4">2024.09.21</td>
+            </tr>
             <tr className="border-t border-gray-200 hover:bg-gray-50">
               <td className="px-4 py-4 font-medium">DSC HUFS Code Festival</td>
               <td className="px-4 py-4">은상</td>
