@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import activities from "@/data/about/activities";
 import awards from "@/data/about/awards";
 import { FaGithub, FaInstagram, FaYoutube } from "react-icons/fa";
+import PageContainer from "@/components/PageContainer";
 
 export const metadata: Metadata = {
   title: "About",
@@ -30,8 +31,8 @@ const SOCIAL_MEDIA_BUTTONS = [
 
 const AboutPage = () => {
   return (
-    <div className="flex-grow flex flex-col items-center py-6 bg-gray-50">
-      <h1 className="text-5xl font-bold text-gray-900 tracking-tight">
+    <PageContainer>
+      <h1 className="mt-4 text-5xl font-bold text-gray-900 tracking-tight">
         About Me
       </h1>
       <p className="mt-4 text-center text-gray-700 max-w-2xl">
@@ -64,7 +65,7 @@ const AboutPage = () => {
         headers={["Competition", "Award", "Date"]}
         data={awards}
       />
-    </div>
+    </PageContainer>
   );
 };
 

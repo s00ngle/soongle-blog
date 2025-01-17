@@ -1,8 +1,9 @@
+import PageContainer from "@/components/PageContainer";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex-grow flex flex-col justify-center items-center bg-gray-50">
+    <PageContainer>
       <Image
         src="/main-img.png"
         alt="main image"
@@ -12,6 +13,6 @@ export default function Home() {
       />
       <h2 className="text-5xl font-semibold mt-4">Welcome</h2>
       <p className="mt-4 text-gray-700 dark:">I&apos;m soongle</p>
-    </div>
+    </PageContainer>
   );
 }
