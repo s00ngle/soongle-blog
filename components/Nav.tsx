@@ -8,14 +8,15 @@ export default function Nav() {
   const links = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
-    { href: "/post", label: "Post" },
+    { href: "/tech", label: "Tech" },
+    { href: "/music", label: "Music" },
   ];
 
   return (
     <nav>
       <ul className="flex space-x-4">
         {links.map((link) => (
-          <li key={link.href} className="min-w-12">
+          <li key={link.href} className="">
             <Link
               href={link.href}
               className={`inline-block transition-transform duration-300 hover:scale-110 ${
