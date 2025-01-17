@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: "Soongle's blog",
   icons: {
     icon: "/favicon.png",
-    apple: "/favicon.png",
+    apple: "/favicon-apple.png",
   },
   openGraph: {
     title: "Soongle Blog",
@@ -43,7 +43,7 @@ export default function RootLayout({
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" href="/favicon.png" />
-        <link rel="apple-touch-icon" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/favicon-apple.png" />
       </Head>
       <body className="flex flex-col min-h-screen">
         <Header />
