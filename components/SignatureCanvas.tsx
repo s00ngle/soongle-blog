@@ -69,11 +69,7 @@ const SignatureCanvas: React.FC = () => {
   }, []);
 
   return (
-    <div className="space-y-2">
-      <div className="flex items-center gap-2 text-sm font-medium">
-        <span className="w-4 h-4 text-[#3396f4]">🖋</span>
-        <span>서명</span>
-      </div>
+    <div className="mt-4 flex justify-center">
       <div className="inline-block border rounded-md p-2 bg-white">
         <canvas
           ref={canvasRef}

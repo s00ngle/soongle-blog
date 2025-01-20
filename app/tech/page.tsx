@@ -7,10 +7,9 @@ export default function TechPage() {
     <PageContainer>
       {/* 서명 캔버스 */}
       <div className="mt-8">
-        <h3 className="text-3xl font-medium text-gray-700">Sign Below</h3>
-        <p className="text-gray-500 mt-2">
-          Draw your signature in the canvas below:
-        </p>
+        <h2 className="text-3xl font-semibold text-gray-900 text-center">
+          Sign Below
+        </h2>
         <SignatureCanvas />
       </div>
     </PageContainer>
