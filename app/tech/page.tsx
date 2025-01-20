@@ -1,6 +1,5 @@
 import PageContainer from "@/components/PageContainer";
 import SignatureCanvas from "@/components/SignatureCanvas";
-import Image from "next/image";
 
 export default function TechPage() {
   return (

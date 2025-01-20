@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useRef, useState, useEffect, MouseEvent } from "react";
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  MouseEvent,
+  TouchEvent,
+} from "react";
 
 const SignatureCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -10,24 +16,31 @@ const SignatureCanvas: React.FC = () => {
     y: number;
   } | null>(null);
 
-  // Convert mouse event coordinates to canvas-relative coordinates
-  const getCanvasCoordinates = (event: MouseEvent<HTMLCanvasElement>) => {
+  // Convert event coordinates to canvas-relative coordinates
+  const getCanvasCoordinates = (event: MouseEvent | TouchEvent) => {
     const canvas = canvasRef.current;
     if (!canvas) return { x: 0, y: 0 };
     const rect = canvas.getBoundingClientRect();
+    if ("touches" in event) {
+      const touch = event.touches[0]; // First touch event
+      return {
+        x: touch.clientX - rect.left,
+        y: touch.clientY - rect.top,
+      };
+    }
     return {
       x: event.clientX - rect.left,
       y: event.clientY - rect.top,
     };
   };
 
-  const startDrawing = (event: MouseEvent<HTMLCanvasElement>) => {
+  const startDrawing = (event: MouseEvent | TouchEvent) => {
     setIsDrawing(true);
     const position = getCanvasCoordinates(event);
     setLastPosition(position);
   };
 
-  const draw = (event: MouseEvent<HTMLCanvasElement>) => {
+  const draw = (event: MouseEvent | TouchEvent) => {
     if (!isDrawing || !canvasRef.current) return;
 
     const context = canvasRef.current.getContext("2d");
@@ -76,10 +89,16 @@ const SignatureCanvas: React.FC = () => {
           className="border rounded cursor-crosshair touch-none"
           width={250}
           height={150}
+          // Mouse Events
           onMouseDown={startDrawing}
           onMouseMove={draw}
           onMouseUp={stopDrawing}
           onMouseLeave={stopDrawing}
+          // Touch Events
+          onTouchStart={startDrawing}
+          onTouchMove={draw}
+          onTouchEnd={stopDrawing}
+          onTouchCancel={stopDrawing}
           aria-label="서명 캔버스"
         />
         <button
