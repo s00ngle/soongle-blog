@@ -13,7 +13,7 @@ export default function Home() {
       />
       <h2 className="text-5xl font-semibold mt-4">Welcome</h2>
       <p className="mt-4 text-xl text-gray-500 dark:">I'm Soongle</p>
-      <p className="mt-4 text-gray-500 dark:">Tech &Music</p>
+      <p className="mt-4 text-gray-500 dark:">Tech & Music</p>
     </PageContainer>
   );
 }
