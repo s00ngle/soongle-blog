@@ -282,9 +282,8 @@ export default function MusicPage() {
   return (
     <PageContainer>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold">Music Gallery</h1>
-        </div>
+        <h1 className="my-6 text-center text-3xl font-bold">Music Gallery</h1>
+
         <VideoGallery
           videos={videos}
           isLoading={isLoading}
