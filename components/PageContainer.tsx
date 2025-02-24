@@ -6,9 +6,9 @@ interface PageContainerProps {
 
 const PageContainer = ({ children }: PageContainerProps) => {
   return (
-    <div className="flex-grow flex flex-col items-center justify-center bg-gray-50">
+    <main className="flex-grow flex flex-col items-center justify-center bg-gray-50">
       {children}
-    </div>
+    </main>
   );
 };
 

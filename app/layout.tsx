@@ -45,11 +45,11 @@ export default function RootLayout({
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link rel="apple-touch-icon" href="/favicon-apple.png" />
       </Head>
-      <body className="flex flex-col min-h-screen">
+      <body className="flex flex-col min-h-screen pt-20">
         <Header />
-        <main className="flex-grow flex flex-col justify-center items-center">
-          {children}
-        </main>
+
+        {children}
+
         <ScrollToTopButton />
         <Footer />
       </body>
