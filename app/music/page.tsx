@@ -158,8 +158,8 @@ const VideoGallery = ({
   }
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+    <div className="space-y-6 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {videos.slice(0, visibleCount).map((video, index) => (
           <div
             key={video.id.videoId}
@@ -183,7 +183,7 @@ const VideoGallery = ({
   );
 };
 
-export default function Home() {
+export default function MusicPage() {
   const [videos, setVideos] = useState<YouTubeVideo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -281,15 +281,17 @@ export default function Home() {
 
   return (
     <PageContainer>
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold">Music Gallery</h1>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold">Music Gallery</h1>
+        </div>
+        <VideoGallery
+          videos={videos}
+          isLoading={isLoading}
+          error={error}
+          lastElementRef={lastVideoElementRef}
+        />
       </div>
-      <VideoGallery
-        videos={videos}
-        isLoading={isLoading}
-        error={error}
-        lastElementRef={lastVideoElementRef}
-      />
     </PageContainer>
   );
 }
