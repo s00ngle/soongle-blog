@@ -115,9 +115,11 @@ const VideoCard = ({
         <h3 className="text-lg font-bold line-clamp-2 mb-2">
           {decodeHtmlEntities(video.snippet.title)}
         </h3>
-        <p className="text-gray-600 text-sm line-clamp-3 mb-2">
-          {decodeHtmlEntities(video.snippet.description)}
-        </p>
+        {video.snippet.description && (
+          <p className="text-gray-600 text-sm line-clamp-3 mb-2">
+            {decodeHtmlEntities(video.snippet.description)}
+          </p>
+        )}
         <p className="text-gray-500 text-xs">
           {new Date(video.snippet.publishedAt).toLocaleDateString()}
         </p>
