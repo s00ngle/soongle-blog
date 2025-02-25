@@ -22,7 +22,9 @@ export default function Nav({ isMobile, onLinkClick }: NavProps) {
     <nav>
       <ul
         className={`${
-          isMobile ? "flex flex-col space-y-2 px-4 py-2" : "flex space-x-6"
+          isMobile
+            ? "flex flex-col items-end space-y-2 px-4 py-2"
+            : "flex space-x-6"
         }`}
       >
         {links.map((link) => (
