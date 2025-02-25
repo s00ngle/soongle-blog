@@ -1,15 +1,16 @@
 import PageContainer from "@/components/PageContainer";
+import PaintingCanvas from "@/components/PaintingCanvas";
 import SignatureCanvas from "@/components/SignatureCanvas";
 
 export default function TechPage() {
   return (
     <PageContainer>
-      {/* 서명 캔버스 */}
-      <div className="mt-8">
+      <div className="p-4">
         <h2 className="text-3xl font-semibold text-gray-900 text-center">
-          Sign Below
+          Painting Canvas
         </h2>
-        <SignatureCanvas />
+        <PaintingCanvas />
+        {/* <SignatureCanvas /> */}
       </div>
     </PageContainer>
   );
