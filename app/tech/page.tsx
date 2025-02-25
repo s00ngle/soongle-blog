@@ -1,6 +1,5 @@
 import PageContainer from "@/components/PageContainer";
 import PaintingCanvas from "@/components/PaintingCanvas";
-import SignatureCanvas from "@/components/SignatureCanvas";
 
 export default function TechPage() {
   return (

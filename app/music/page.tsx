@@ -24,10 +24,10 @@ interface YouTubeVideo {
   };
 }
 
-interface YouTubeResponse {
-  items: YouTubeVideo[];
-  nextPageToken?: string;
-}
+// interface YouTubeResponse {
+//   items: YouTubeVideo[];
+//   nextPageToken?: string;
+// }
 
 const INITIAL_LOAD_COUNT = 6;
 const BATCH_SIZE = 4; // 한 번에 렌더링할 비디오 수
