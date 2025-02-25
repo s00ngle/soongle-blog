@@ -108,14 +108,42 @@ export default function InteractiveThreeJS() {
       // 기기의 기울기 값 받아오기 (alpha, beta, gamma)
       const { alpha, beta, gamma } = event;
 
-      // alpha: Z축을 기준으로 회전, beta: X축을 기준으로 기울기, gamma: Y축을 기준으로 기울기
       if (alpha !== null && beta !== null && gamma !== null) {
-        cubeRef.current.rotation.x = beta * (Math.PI / 180); // X축 회전
-        cubeRef.current.rotation.y = gamma * (Math.PI / 180); // Y축 회전
+        // Y축 기울기를 X축 회전으로 적용
+        cubeRef.current.rotation.x = beta * (Math.PI / 180);
+        // X축 기울기를 Y축 회전으로 적용
+        cubeRef.current.rotation.y = gamma * (Math.PI / 180);
       }
     };
 
-    window.addEventListener("deviceorientation", handleOrientation);
+    // Safari에서 권한 요청 처리
+    const requestPermission = async () => {
+      if (
+        typeof (DeviceOrientationEvent as any).requestPermission === "function"
+      ) {
+        try {
+          const permission = await (
+            DeviceOrientationEvent as any
+          ).requestPermission();
+          if (permission === "granted") {
+            window.addEventListener(
+              "deviceorientation",
+              handleOrientation,
+              true
+            );
+          } else {
+            console.log("Permission denied");
+          }
+        } catch (err) {
+          console.error("Permission request failed", err);
+        }
+      } else {
+        // Safari 13.3 이상이 아니거나, 다른 브라우저에서는 권한 요청을 따로 할 필요 없음
+        window.addEventListener("deviceorientation", handleOrientation, true);
+      }
+    };
+
+    requestPermission();
 
     return () => {
       canvas.removeEventListener("mousedown", onMouseDown);
