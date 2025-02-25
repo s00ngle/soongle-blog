@@ -45,7 +45,7 @@ export default function RootLayout({
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link rel="apple-touch-icon" href="/favicon-apple.png" />
       </Head>
-      <body className="flex flex-col min-h-screen pt-20">
+      <body className="flex flex-col min-h-screen">
         <Header />
 
         {children}
