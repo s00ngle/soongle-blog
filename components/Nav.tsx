@@ -10,6 +10,10 @@ export default function Nav() {
     { href: "/about", label: "About" },
     { href: "/tech", label: "Tech" },
     { href: "/music", label: "Music" },
+    {
+      href: "/three",
+      label: "Three.JS",
+    },
   ];
 
   return (
