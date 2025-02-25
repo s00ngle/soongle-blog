@@ -14,8 +14,7 @@ export default function Nav({ isMobile, onLinkClick }: NavProps) {
     { href: "/about", label: "About" },
     { href: "/tech", label: "Tech" },
     { href: "/music", label: "Music" },
-    { href: "/three", label: "Three.JS" },
-    { href: "/periodictable", label: "Periodic Table" },
+    { href: "/tone", label: "Tone" },
   ];
 
   return (
