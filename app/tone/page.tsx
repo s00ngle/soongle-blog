@@ -9,9 +9,10 @@ export default function TonePage() {
 
   // Tone.js 초기화 함수
   const initializeTone = async () => {
-    // 사용자 상호작용 이후 AudioContext를 resume
-    if (Tone.context.state === "suspended") {
-      await Tone.context.resume();
+    await Tone.start();
+    const context = Tone.getContext();
+    if (context.state !== "running") {
+      await context.resume();
     }
 
     // Tone.js 악기 및 루프 설정
@@ -80,9 +81,10 @@ export default function TonePage() {
   useEffect(() => {
     return () => {
       if (isInitialized) {
-        Tone.Transport.stop();
-        Tone.Transport.cancel();
-        Tone.context.dispose();
+        const context = Tone.getContext(); // 변경된 부분
+        Tone.getTransport().stop();
+        Tone.getTransport().cancel();
+        context.dispose(); // 변경된 부분
       }
     };
   }, [isInitialized]);
@@ -90,14 +92,14 @@ export default function TonePage() {
   // 재생 버튼 클릭 핸들러
   const handleDrumStart = async () => {
     if (!isInitialized) {
-      await initializeTone(); // 사용자 상호작용 후 초기화
+      await initializeTone();
     }
-    await Tone.Transport.start(); // 재생 시작
+    await Tone.getTransport().start(); // 변경된 부분
   };
 
   // 정지 버튼 클릭 핸들러
   const handleDrumStop = async () => {
-    await Tone.Transport.stop(); // 재생 정지
+    await Tone.getTransport().stop(); // 변경된 부분
   };
 
   return (
