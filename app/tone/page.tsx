@@ -8,10 +8,7 @@ export default function TonePage() {
   const [isInitialized, setIsInitialized] = useState(false);
 
   const initializeTone = async () => {
-    if (Tone.context.state === "suspended") {
-      await Tone.start();
-    }
-
+    // Tone.js의 오디오 컨텍스트를 초기화
     const drum = new Tone.MembraneSynth().toDestination();
     const hat = new Tone.MetalSynth({
       envelope: {
@@ -84,9 +81,15 @@ export default function TonePage() {
   }, [isInitialized]);
 
   const handleDrumStart = async () => {
+    // 사용자 동작에 반응하여 AudioContext를 활성화
+    if (Tone.context.state === "suspended") {
+      await Tone.context.resume();
+    }
+
     if (!isInitialized) {
       await initializeTone();
     }
+
     await Tone.Transport.start();
   };
 
