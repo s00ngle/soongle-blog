@@ -7,8 +7,14 @@ import * as Tone from "tone";
 export default function TonePage() {
   const [isInitialized, setIsInitialized] = useState(false);
 
+  // Tone.js 초기화 함수
   const initializeTone = async () => {
-    // Tone.js의 오디오 컨텍스트를 초기화
+    // 사용자 상호작용 이후 AudioContext를 resume
+    if (Tone.context.state === "suspended") {
+      await Tone.context.resume();
+    }
+
+    // Tone.js 악기 및 루프 설정
     const drum = new Tone.MembraneSynth().toDestination();
     const hat = new Tone.MetalSynth({
       envelope: {
@@ -67,9 +73,10 @@ export default function TonePage() {
       melody.triggerAttackRelease(["G4", "C4"], "16n", time + 3.28);
     }, 4).start(0);
 
-    setIsInitialized(true);
+    setIsInitialized(true); // 초기화 완료 상태 업데이트
   };
 
+  // 컴포넌트 언마운트 시 Tone.js 정리
   useEffect(() => {
     return () => {
       if (isInitialized) {
@@ -80,21 +87,17 @@ export default function TonePage() {
     };
   }, [isInitialized]);
 
+  // 재생 버튼 클릭 핸들러
   const handleDrumStart = async () => {
-    // 사용자 동작에 반응하여 AudioContext를 활성화
-    if (Tone.context.state === "suspended") {
-      await Tone.context.resume();
-    }
-
     if (!isInitialized) {
-      await initializeTone();
+      await initializeTone(); // 사용자 상호작용 후 초기화
     }
-
-    await Tone.Transport.start();
+    await Tone.Transport.start(); // 재생 시작
   };
 
+  // 정지 버튼 클릭 핸들러
   const handleDrumStop = async () => {
-    await Tone.Transport.stop();
+    await Tone.Transport.stop(); // 재생 정지
   };
 
   return (
