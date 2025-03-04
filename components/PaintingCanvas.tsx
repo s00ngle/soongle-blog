@@ -4,6 +4,7 @@ import React, {
   useRef,
   useState,
   useEffect,
+  useCallback,
   MouseEvent as ReactMouseEvent,
   TouchEvent as ReactTouchEvent,
 } from "react";
@@ -23,6 +24,7 @@ const PaintingCanvas: React.FC = () => {
   const [eraseSize, setEraseSize] = useState(20);
   const eraserCursorRef = useRef<HTMLDivElement | null>(null);
 
+  // 색상 옵션
   const colorOptions = [
     "#000000",
     "#FF0000",
@@ -32,9 +34,13 @@ const PaintingCanvas: React.FC = () => {
     "#FFA500",
   ];
 
+  // 선 굵기 옵션
   const lineWidthOptions = [1, 2, 4, 6];
+
+  // 지우개 크기 옵션
   const eraserSizeOptions = [10, 20, 30, 40];
 
+  // Convert event coordinates to canvas-relative coordinates
   const getCanvasCoordinates = (event: ReactMouseEvent | ReactTouchEvent) => {
     const canvas = canvasRef.current;
     if (!canvas) return { x: 0, y: 0 };
@@ -117,9 +123,12 @@ const PaintingCanvas: React.FC = () => {
     if (!canvas) return;
 
     const dataURL = canvas.toDataURL("image/png");
+
+    // 다운로드 링크 생성
     const link = document.createElement("a");
     link.href = dataURL;
     link.download = `my-drawing-${new Date().toISOString().slice(0, 10)}.png`;
+
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -143,33 +152,39 @@ const PaintingCanvas: React.FC = () => {
     setEraseSize(size);
   };
 
-  const updateEraserCursor = (event: globalThis.MouseEvent) => {
-    if (activeTool !== "eraser" || !eraserCursorRef.current) return;
+  // 마우스 이동 시 지우개 커서 위치 업데이트
+  const updateEraserCursor = useCallback(
+    (event: globalThis.MouseEvent) => {
+      if (activeTool !== "eraser" || !eraserCursorRef.current) return;
 
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+      const canvas = canvasRef.current;
+      if (!canvas) return;
 
-    const rect = canvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
+      const rect = canvas.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
 
-    if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
-      eraserCursorRef.current.style.display = "block";
-      eraserCursorRef.current.style.left = `${x}px`;
-      eraserCursorRef.current.style.top = `${y}px`;
-      eraserCursorRef.current.style.width = `${eraseSize}px`;
-      eraserCursorRef.current.style.height = `${eraseSize}px`;
-    } else {
-      eraserCursorRef.current.style.display = "none";
-    }
-  };
+      if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
+        eraserCursorRef.current.style.display = "block";
+        eraserCursorRef.current.style.left = `${x}px`;
+        eraserCursorRef.current.style.top = `${y}px`;
+        eraserCursorRef.current.style.width = `${eraseSize}px`;
+        eraserCursorRef.current.style.height = `${eraseSize}px`;
+      } else {
+        eraserCursorRef.current.style.display = "none";
+      }
+    },
+    [activeTool, eraseSize]
+  );
 
+  // 지우개 커서 숨기기
   const hideEraserCursor = () => {
     if (eraserCursorRef.current) {
       eraserCursorRef.current.style.display = "none";
     }
   };
 
+  // 캔버스 크기 설정
   const [canvasWidth, setCanvasWidth] = useState(400);
   const [canvasHeight, setCanvasHeight] = useState(250);
 
@@ -185,6 +200,7 @@ const PaintingCanvas: React.FC = () => {
     return () => window.removeEventListener("resize", updateCanvasSize);
   }, []);
 
+  // 캔버스에 그리기 설정 업데이트
   useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas) {
@@ -197,20 +213,21 @@ const PaintingCanvas: React.FC = () => {
     }
   }, [strokeColor, lineWidth]);
 
+  // 캔버스에 마우스 이벤트 리스너 등록
   useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas) {
-      const mouseMove = (e: globalThis.MouseEvent) => updateEraserCursor(e);
-
-      canvas.addEventListener("mousemove", mouseMove);
+      // 마우스 이동 이벤트 리스너 등록
+      canvas.addEventListener("mousemove", updateEraserCursor);
       canvas.addEventListener("mouseleave", hideEraserCursor);
 
       return () => {
-        canvas.removeEventListener("mousemove", mouseMove);
+        // 컴포넌트 언마운트 시 리스너 제거
+        canvas.removeEventListener("mousemove", updateEraserCursor);
         canvas.removeEventListener("mouseleave", hideEraserCursor);
       };
     }
-  }, [activeTool, eraseSize]);
+  }, [updateEraserCursor]);
 
   return (
     <div className="mt-4 flex flex-col items-center">
@@ -240,6 +257,7 @@ const PaintingCanvas: React.FC = () => {
             }}
           />
         </div>
+        {/* 도구 선택 영역 */}
         <div className="mt-4 mb-2">
           <p className="text-sm mb-2 font-medium">도구 선택:</p>
           <div className="flex space-x-2">
@@ -264,6 +282,7 @@ const PaintingCanvas: React.FC = () => {
           </div>
         </div>
 
+        {/* 펜 설정 영역 */}
         {activeTool === "pen" && (
           <>
             <div className="mt-3 mb-3">
@@ -312,6 +331,7 @@ const PaintingCanvas: React.FC = () => {
           </>
         )}
 
+        {/* 지우개 설정 영역 */}
         {activeTool === "eraser" && (
           <div className="mt-3 mb-3">
             <p className="text-sm mb-2 font-medium">지우개 크기:</p>
