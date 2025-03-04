@@ -7,10 +7,10 @@ import * as Tone from "tone";
 export default function TonePage() {
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // Initialize Tone.js after user interaction
   const initializeTone = async () => {
-    // Start the audio context
-    await Tone.start();
+    if (Tone.context.state === "suspended") {
+      await Tone.start();
+    }
 
     const drum = new Tone.MembraneSynth().toDestination();
     const hat = new Tone.MetalSynth({
@@ -73,7 +73,6 @@ export default function TonePage() {
     setIsInitialized(true);
   };
 
-  // Clean up when component unmounts
   useEffect(() => {
     return () => {
       if (isInitialized) {
@@ -85,7 +84,6 @@ export default function TonePage() {
   }, [isInitialized]);
 
   const handleDrumStart = async () => {
-    // Initialize if not already done
     if (!isInitialized) {
       await initializeTone();
     }
