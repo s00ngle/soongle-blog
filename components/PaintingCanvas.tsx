@@ -23,29 +23,24 @@ const PaintingCanvas: React.FC = () => {
   const [eraseSize, setEraseSize] = useState(20);
   const eraserCursorRef = useRef<HTMLDivElement | null>(null);
 
-  // 색상 옵션
   const colorOptions = [
-    "#000000", // 검정
-    "#FF0000", // 빨강
-    "#0000FF", // 파랑
-    "#008000", // 초록
-    "#800080", // 보라
-    "#FFA500", // 주황
+    "#000000",
+    "#FF0000",
+    "#0000FF",
+    "#008000",
+    "#800080",
+    "#FFA500",
   ];
 
-  // 선 굵기 옵션
   const lineWidthOptions = [1, 2, 4, 6];
-
-  // 지우개 크기 옵션
   const eraserSizeOptions = [10, 20, 30, 40];
 
-  // Convert event coordinates to canvas-relative coordinates
   const getCanvasCoordinates = (event: ReactMouseEvent | ReactTouchEvent) => {
     const canvas = canvasRef.current;
     if (!canvas) return { x: 0, y: 0 };
     const rect = canvas.getBoundingClientRect();
     if ("touches" in event) {
-      const touch = event.touches[0]; // First touch event
+      const touch = event.touches[0];
       return {
         x: touch.clientX - rect.left,
         y: touch.clientY - rect.top,
@@ -62,7 +57,6 @@ const PaintingCanvas: React.FC = () => {
     const position = getCanvasCoordinates(event);
     setLastPosition(position);
 
-    // 지우개 도구인 경우 첫 클릭 시 바로 지우기
     if (activeTool === "eraser") {
       erase(position);
     }
@@ -77,13 +71,11 @@ const PaintingCanvas: React.FC = () => {
     const currentPosition = getCanvasCoordinates(event);
 
     if (activeTool === "pen") {
-      // 펜 도구로 그리기
       context.beginPath();
       context.moveTo(lastPosition.x, lastPosition.y);
       context.lineTo(currentPosition.x, currentPosition.y);
       context.stroke();
     } else if (activeTool === "eraser") {
-      // 지우개로 지우기
       erase(currentPosition);
     }
 
@@ -124,15 +116,10 @@ const PaintingCanvas: React.FC = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // 캔버스 내용을 이미지 URL로 변환
     const dataURL = canvas.toDataURL("image/png");
-
-    // 다운로드 링크 생성
     const link = document.createElement("a");
     link.href = dataURL;
     link.download = `my-drawing-${new Date().toISOString().slice(0, 10)}.png`;
-
-    // 가상 클릭 이벤트 발생
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -156,7 +143,6 @@ const PaintingCanvas: React.FC = () => {
     setEraseSize(size);
   };
 
-  // 마우스 이동 시 지우개 커서 위치 업데이트
   const updateEraserCursor = (event: globalThis.MouseEvent) => {
     if (activeTool !== "eraser" || !eraserCursorRef.current) return;
 
@@ -189,18 +175,16 @@ const PaintingCanvas: React.FC = () => {
 
   useEffect(() => {
     const updateCanvasSize = () => {
-      setCanvasWidth(window.innerWidth * 0.9); // 화면의 90% 너비로 설정
-      // 가로:세로 16:9 비율로 설정
+      setCanvasWidth(window.innerWidth * 0.9);
       setCanvasHeight((window.innerWidth * 0.9 * 9) / 16);
     };
 
-    updateCanvasSize(); // 초기 크기 설정
+    updateCanvasSize();
     window.addEventListener("resize", updateCanvasSize);
 
     return () => window.removeEventListener("resize", updateCanvasSize);
   }, []);
 
-  // 캔버스에 그리기 설정 업데이트
   useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas) {
@@ -213,7 +197,6 @@ const PaintingCanvas: React.FC = () => {
     }
   }, [strokeColor, lineWidth]);
 
-  // 캔버스에 마우스 이벤트 리스너 등록
   useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas) {
@@ -257,8 +240,6 @@ const PaintingCanvas: React.FC = () => {
             }}
           />
         </div>
-
-        {/* 도구 선택 영역 */}
         <div className="mt-4 mb-2">
           <p className="text-sm mb-2 font-medium">도구 선택:</p>
           <div className="flex space-x-2">
@@ -283,7 +264,6 @@ const PaintingCanvas: React.FC = () => {
           </div>
         </div>
 
-        {/* 펜 설정 영역 */}
         {activeTool === "pen" && (
           <>
             <div className="mt-3 mb-3">
@@ -332,7 +312,6 @@ const PaintingCanvas: React.FC = () => {
           </>
         )}
 
-        {/* 지우개 설정 영역 */}
         {activeTool === "eraser" && (
           <div className="mt-3 mb-3">
             <p className="text-sm mb-2 font-medium">지우개 크기:</p>
