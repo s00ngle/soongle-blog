@@ -1,11 +1,17 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PageContainer from "@/components/PageContainer";
 import * as Tone from "tone";
 
 export default function TonePage() {
-  useEffect(() => {
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // Initialize Tone.js after user interaction
+  const initializeTone = async () => {
+    // Start the audio context
+    await Tone.start();
+
     const drum = new Tone.MembraneSynth().toDestination();
     const hat = new Tone.MetalSynth({
       envelope: {
@@ -64,13 +70,25 @@ export default function TonePage() {
       melody.triggerAttackRelease(["G4", "C4"], "16n", time + 3.28);
     }, 4).start(0);
 
+    setIsInitialized(true);
+  };
+
+  // Clean up when component unmounts
+  useEffect(() => {
     return () => {
-      Tone.Transport.stop();
-      Tone.Transport.cancel();
+      if (isInitialized) {
+        Tone.Transport.stop();
+        Tone.Transport.cancel();
+        Tone.context.dispose();
+      }
     };
-  }, []);
+  }, [isInitialized]);
 
   const handleDrumStart = async () => {
+    // Initialize if not already done
+    if (!isInitialized) {
+      await initializeTone();
+    }
     await Tone.Transport.start();
   };
 
@@ -81,8 +99,18 @@ export default function TonePage() {
   return (
     <PageContainer>
       <h1 className="text-3xl font-bold">Tone.js</h1>
-      <button onClick={handleDrumStart}>play</button>
-      <button onClick={handleDrumStop}>stop</button>
+      <button
+        onClick={handleDrumStart}
+        className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+      >
+        Play
+      </button>
+      <button
+        onClick={handleDrumStop}
+        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+      >
+        Stop
+      </button>
     </PageContainer>
   );
 }
