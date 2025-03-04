@@ -107,13 +107,13 @@ export default function TonePage() {
       <h1 className="text-3xl font-bold">Tone.js</h1>
       {/* <button
         onClick={handleDrumStart}
-        className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        className="px-4 py-2 mr-2 bg-blue-500 text-white rounded-sm hover:bg-blue-600"
       >
         Play
       </button>
       <button
         onClick={handleDrumStop}
-        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+        className="px-4 py-2 bg-red-500 text-white rounded-sm hover:bg-red-600"
       >
         Stop
       </button> */}

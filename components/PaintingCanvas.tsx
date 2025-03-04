@@ -235,7 +235,7 @@ const PaintingCanvas: React.FC = () => {
         <div className="relative">
           <canvas
             ref={canvasRef}
-            className="border rounded touch-none w-full"
+            className="border rounded-sm touch-none w-full"
             width={canvasWidth}
             height={canvasHeight}
             onMouseDown={startDrawing}
@@ -363,14 +363,14 @@ const PaintingCanvas: React.FC = () => {
           <button
             type="button"
             onClick={clearCanvas}
-            className="bg-gray-100 hover:bg-gray-200 text-gray-700 rounded px-6 py-2"
+            className="bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-sm px-6 py-2"
           >
             모두 지우기
           </button>
           <button
             type="button"
             onClick={saveCanvas}
-            className="bg-blue-500 hover:bg-blue-600 text-white rounded px-6 py-2"
+            className="bg-blue-500 hover:bg-blue-600 text-white rounded-sm px-6 py-2"
           >
             그림 저장하기
           </button>

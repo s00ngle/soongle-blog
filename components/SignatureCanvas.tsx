@@ -86,7 +86,7 @@ const SignatureCanvas: React.FC = () => {
       <div className="inline-block border rounded-md p-2 bg-white">
         <canvas
           ref={canvasRef}
-          className="border rounded cursor-crosshair touch-none"
+          className="border rounded-sm cursor-crosshair touch-none"
           width={250}
           height={150}
           // Mouse Events
@@ -104,7 +104,7 @@ const SignatureCanvas: React.FC = () => {
         <button
           type="button"
           onClick={clearCanvas}
-          className="mt-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded px-4 py-2"
+          className="mt-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-sm px-4 py-2"
         >
           서명 지우기
         </button>

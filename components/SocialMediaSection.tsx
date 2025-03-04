@@ -10,7 +10,7 @@ const SOCIAL_MEDIA_BUTTONS = [
   {
     href: "https://www.instagram.com/kyso_on/",
     colors:
-      "bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white",
+      "bg-linear-to-r from-pink-500 via-purple-500 to-indigo-500 text-white",
     icon: <FaInstagram className="text-3xl" />,
   },
   {
